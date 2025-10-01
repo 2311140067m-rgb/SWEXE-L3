@@ -1,0 +1,22 @@
+<% if @bookmark.errors.present? %>
+<h3>エラーがあります。</h3>
+<ul>
+  <% @bookmark.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+
+<%= form_with url: bookmarks_path, model: @bookmark do |f| %>
+  <%= f.label :title, 'タイトル' %>
+  <%= f.text_field :title %>
+  <%= f.label :url, 'URL' %>
+  <%= f.text_field :url %>
+  <%= f.label :author, '著者' %>
+  <%= f.text_field :author %>
+  <%= f.submit '登録' %>
+<% end %>
